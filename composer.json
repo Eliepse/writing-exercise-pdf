@@ -1,0 +1,29 @@
+{
+    "name" : "eliepse/writing-exercise-pdf",
+    "description" : "Tool to generate exercise with words to write, as a PDF file",
+    "type" : "library",
+    "require" : {
+        "php" : "^7.3",
+        "mpdf/mpdf" : "^8.0",
+        "ext-mbstring" : "*"
+    },
+    "license" : "MIT",
+    "authors" : [
+        {
+            "name" : "Eliepse",
+            "email" : "contact@eliepse.fr"
+        }
+    ],
+    "autoload" : {
+        "psr-4" : {
+            "Eliepse\\WritingGrid\\" : "src/"
+        }
+    },
+    "scripts" : {
+        "release" : [
+            "git checkout master",
+            "git merge --ff develop",
+            "git checkout develop"
+        ]
+    }
+}
