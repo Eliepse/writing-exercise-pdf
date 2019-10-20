@@ -7,6 +7,7 @@ namespace Eliepse\WritingGrid\Render;
 use Eliepse\WritingGrid\Content\Page;
 use Eliepse\WritingGrid\Content\Word;
 use Eliepse\WritingGrid\Layout\BaseLayout;
+use Eliepse\WritingGrid\Utils\Math;
 use Eliepse\WritingGrid\WordList;
 use Mpdf\Mpdf;
 use Mpdf\Output\Destination;
@@ -37,6 +38,12 @@ final class Renderer extends RenderElement
 			'mode' => 'utf-8',
 			'format' => [210, 297],
 			'orientation' => 'P',
+			'margin_top' => Math::pxtomm(12),
+			'margin_left' => Math::pxtomm(30),
+			'margin_right' => Math::pxtomm(30),
+			'margin_bottom' => Math::pxtomm(6),
+			'margin_header' => Math::pxtomm(12),
+			'margin_footer' => Math::pxtomm(6),
 		];
 
 		parent::__construct(new Mpdf($options), $layout);
