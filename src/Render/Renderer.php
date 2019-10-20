@@ -44,6 +44,8 @@ final class Renderer extends RenderElement
 		$this->list = $list;
 		$this->configure();
 		$this->metadata();
+		(new HeaderRender($this->mpdf, $this->layout))();
+		(new FooterRender($this->mpdf, $this->layout))();
 	}
 
 
