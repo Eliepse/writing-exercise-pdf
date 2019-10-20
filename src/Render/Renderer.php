@@ -34,7 +34,19 @@ final class Renderer extends RenderElement
 	 */
 	private function __construct(BaseLayout $layout, WordList $list)
 	{
-		$options = [
+		parent::__construct(new Mpdf($this->getMPDFInitConfigs()), $layout);
+
+		$this->list = $list;
+		$this->configure();
+		$this->metadata();
+		(new HeaderRender($this->mpdf, $this->layout))();
+		(new FooterRender($this->mpdf, $this->layout))();
+	}
+
+
+	private function getMPDFInitConfigs(): array
+	{
+		return [
 			'mode' => 'utf-8',
 			'format' => [210, 297],
 			'orientation' => 'P',
@@ -45,14 +57,6 @@ final class Renderer extends RenderElement
 			'margin_header' => Math::pxtomm(12),
 			'margin_footer' => Math::pxtomm(6),
 		];
-
-		parent::__construct(new Mpdf($options), $layout);
-
-		$this->list = $list;
-		$this->configure();
-		$this->metadata();
-		(new HeaderRender($this->mpdf, $this->layout))();
-		(new FooterRender($this->mpdf, $this->layout))();
 	}
 
 
