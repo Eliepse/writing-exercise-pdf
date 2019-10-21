@@ -23,6 +23,11 @@ final class Renderer extends RenderElement
 	 */
 	private $list;
 
+	/**
+	 * @var bool
+	 */
+	private $rendered = false;
+
 
 	/**
 	 * Renderer constructor.
@@ -86,6 +91,25 @@ final class Renderer extends RenderElement
 
 	private function metadata(): void
 	{
+	}
+
+
+	public function render(): void
+	{
+		if ($this->rendered) {
+			return;
+		}
+
+		$this->rendered = true;
+
+		$pages = $this->list->getPages();
+
+		for ($pageIndex = 0; $pageIndex < count($pages); $pageIndex++) {
+			if ($pageIndex !== 0) {
+				$this->mpdf->AddPage();
+			}
+			(new PageRender($this->mpdf, $this->layout))($pages[ $pageIndex ]);
+		}
 	}
 
 

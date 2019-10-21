@@ -30,10 +30,12 @@ abstract class BaseLayout
 	public $title = 'English exercise';
 
 	public $colorTitle = '#2D3748';
+	public $colorWords = '#2D3748';
+	public $colorWordBackground = '#EDF2F7';
+	public $colorFieldLine = '#718096';
+	public $colorFieldLineMuted = '#CBD5E0';
 	public $colorTextDefault = '#2D3748';
 
-//	abstract public function header();
-//	abstract public function footer();
 
 	public function render(WordList $list, int $type = Renderer::OUTPUT_INLINE): ?string
 	{
