@@ -12,12 +12,12 @@ abstract class BaseLayout
 	/**
 	 * @var int
 	 */
-//	public $headerHeight = 0;
+	public $headerHeight = 50;
 
 	/**
 	 * @var int
 	 */
-//	public $footerHeight = 0;
+	public $footerHeight = 10;
 
 	/**
 	 * @var int
@@ -29,6 +29,8 @@ abstract class BaseLayout
 	 */
 	public $title = 'English exercise';
 
+	public $colorTitle = '#2D3748';
+	public $colorTextDefault = '#2D3748';
 
 //	abstract public function header();
 //	abstract public function footer();

@@ -3,6 +3,6 @@
  * @var \Eliepse\WritingGrid\Layout\BaseLayout $layout
  */
 ?>
-<div style="text-align: center; border: 1px solid black">
+<div style="text-align:center;  height:<?= $layout->footerHeight ?>px; color:<?= $layout->colorTextDefault ?>">
 	{PAGENO}/{nbpg}
 </div>
