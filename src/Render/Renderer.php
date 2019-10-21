@@ -107,14 +107,20 @@ final class Renderer extends RenderElement
 	}
 
 
-	static public function render(BaseLayout $layout, WordList $list, int $type = self::OUTPUT_INLINE): ?string
+	/**
+	 * @param BaseLayout $layout
+	 * @param WordList $list
+	 * @param int $type
+	 *
+	 * @return string|void
+	 * @throws \Mpdf\MpdfException
+	 */
+	static public function output(BaseLayout $layout, WordList $list, int $type = self::OUTPUT_INLINE)
 	{
 		$renderer = new self($layout, $list);
+		$renderer->render();
 
 		switch ($type) {
-			case self::OUTPUT_INLINE:
-				$renderer->outputInline();
-				break;
 			case self::OUTPUT_STRING:
 				return $renderer->outputString();
 				break;
@@ -123,6 +129,6 @@ final class Renderer extends RenderElement
 				break;
 		}
 
-		return null;
+		$renderer->outputInline();
 	}
 }

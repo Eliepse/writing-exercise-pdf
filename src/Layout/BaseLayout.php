@@ -37,6 +37,6 @@ abstract class BaseLayout
 
 	public function render(WordList $list, int $type = Renderer::OUTPUT_INLINE): ?string
 	{
-		return Renderer::render($this, $list, $type);
+		return Renderer::output($this, $list, $type);
 	}
 }
