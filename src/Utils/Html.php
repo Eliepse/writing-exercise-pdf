@@ -28,6 +28,6 @@ final class Html
 		ob_start();
 		extract($data);
 		include $path;
-		return ob_get_flush();
+		return ob_get_clean();
 	}
 }
