@@ -14,6 +14,9 @@
         "ext-mbstring" : "*",
         "mpdf/mpdf" : "^8.0"
     },
+    "require-dev" : {
+        "phpstan/phpstan" : "^0.11.18"
+    },
     "autoload" : {
         "psr-4" : {
             "Eliepse\\WritingGrid\\" : "src/"
@@ -24,6 +27,12 @@
             "git checkout master",
             "git merge --ff develop",
             "git checkout develop"
+        ],
+        "tests" : [
+            "@phpstan"
+        ],
+        "phpstan" : [
+            "phpstan analyse --level 7 src"
         ]
     }
 }
