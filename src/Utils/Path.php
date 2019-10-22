@@ -8,7 +8,7 @@ final class Path
 {
 	static public function base(string $path = ''): string
 	{
-		return realpath(__DIR__ . "/../../" . $path);
+		return __DIR__ . "/../../" . $path;
 	}
 
 
