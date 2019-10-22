@@ -4,7 +4,7 @@
 namespace Eliepse\WritingGrid\Utils;
 
 
-class Math
+final class Math
 {
 	static public function pxtomm(int $px, $dpi = 72): float
 	{
