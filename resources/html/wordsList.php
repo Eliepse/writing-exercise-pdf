@@ -5,7 +5,7 @@
  * @var \Eliepse\WritingGrid\Content\Word $word
  */
 ?>
-<div style="padding-top: <?= $layout->headerHeight + 12 ?>px">
+<div style="padding-top: <?= $layout->headerHeight + $layout->getMargin('top') ?>px">
 	<?php foreach ($page->getWords() as $word): ?>
 		<div style="background-color: <?= $layout->colorWordBackground ?>; border-radius: 8px; padding: 6px 9px; margin: 10px 0;">
 			<h2 style="font-size: 14px; font-weight: bold; color:<?= $layout->colorWords ?>; margin: 0 0 10px 0;">

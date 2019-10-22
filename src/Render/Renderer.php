@@ -12,11 +12,21 @@ use Mpdf\Config\FontVariables;
 use Mpdf\Mpdf;
 use Mpdf\Output\Destination;
 
-final class Renderer extends RenderElement
+final class Renderer
 {
 	public const OUTPUT_INLINE = 0;
 	public const OUTPUT_DOWNLOAD = 1;
 	public const OUTPUT_STRING = 2;
+
+	/**
+	 * @var Mpdf
+	 */
+	protected $mpdf;
+
+	/**
+	 * @var BaseLayout
+	 */
+	protected $layout;
 
 	/**
 	 * @var WordList
@@ -39,9 +49,10 @@ final class Renderer extends RenderElement
 	 */
 	private function __construct(BaseLayout $layout, WordList $list)
 	{
-		parent::__construct(new Mpdf($this->getMPDFInitConfigs()), $layout);
-
+		$this->layout = $layout;
+		$this->mpdf = new Mpdf($this->getMPDFInitConfigs());
 		$this->list = $list;
+
 		$this->configure();
 		$this->metadata();
 		(new HeaderRender($this->mpdf, $this->layout))();
@@ -55,12 +66,10 @@ final class Renderer extends RenderElement
 			'mode' => 'utf-8',
 			'format' => [210, 297],
 			'orientation' => 'P',
-			'margin_top' => Math::pxtomm(12),
-			'margin_left' => Math::pxtomm(30),
-			'margin_right' => Math::pxtomm(30),
-			'margin_bottom' => Math::pxtomm(6),
-			'margin_header' => Math::pxtomm(12),
-			'margin_footer' => Math::pxtomm(6),
+			'margin_top' => Math::pxtomm($this->layout->getMargin('top')),
+			'margin_right' => Math::pxtomm($this->layout->getMargin('right')),
+			'margin_bottom' => Math::pxtomm($this->layout->getMargin('bottom')),
+			'margin_left' => Math::pxtomm($this->layout->getMargin('left')),
 			'fontdata' => $this->getFontDataConfig(),
 		];
 	}
@@ -86,6 +95,8 @@ final class Renderer extends RenderElement
 		$this->mpdf->autoPageBreak = false;
 		$this->mpdf->AddFontDirectory(Path::resources('fonts/'));
 		$this->mpdf->SetDefaultFont('caveat');
+		$this->mpdf->margin_header = Math::pxtomm($this->layout->getMargin('top'));
+		$this->mpdf->margin_footer = Math::pxtomm($this->layout->getMargin('bottom'));
 	}
 
 
