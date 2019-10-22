@@ -10,7 +10,9 @@ use Eliepse\WritingGrid\Utils\Path;
 use Eliepse\WritingGrid\WordList;
 use Mpdf\Config\FontVariables;
 use Mpdf\Mpdf;
+use Mpdf\MpdfException;
 use Mpdf\Output\Destination;
+use Mpdf\Utils\UtfString;
 
 final class Renderer
 {
@@ -45,7 +47,7 @@ final class Renderer
 	 * @param BaseLayout $layout
 	 * @param WordList $list
 	 *
-	 * @throws \Mpdf\MpdfException
+	 * @throws MpdfException
 	 */
 	private function __construct(BaseLayout $layout, WordList $list)
 	{
@@ -102,6 +104,11 @@ final class Renderer
 
 	private function metadata(): void
 	{
+		$this->mpdf->SetTitle(UtfString::strcode2utf($this->layout->title));
+		$this->mpdf->SetSubject(UtfString::strcode2utf($this->layout->subject));
+		$this->mpdf->SetAuthor(UtfString::strcode2utf($this->layout->author));
+		$this->mpdf->SetCreator(UtfString::strcode2utf($this->layout->creator));
+		$this->mpdf->SetKeywords(UtfString::strcode2utf($this->layout->keywords));
 	}
 
 
@@ -148,7 +155,7 @@ final class Renderer
 	 * @param int $type
 	 *
 	 * @return string|void
-	 * @throws \Mpdf\MpdfException
+	 * @throws MpdfException
 	 */
 	static public function output(BaseLayout $layout, WordList $list, int $type = self::OUTPUT_INLINE)
 	{

@@ -12,7 +12,7 @@ abstract class BaseLayout
 	/**
 	 * @var int
 	 */
-	public $headerHeight = 50;
+	public $headerHeight = 60;
 
 	/**
 	 * @var int
@@ -28,6 +28,10 @@ abstract class BaseLayout
 	 * @var string
 	 */
 	public $title = 'English exercise';
+	public $subject = 'A list of word for english exercise.';
+	public $author = '';
+	public $creator = '';
+	public $keywords = '';
 
 	public $pageMargin = [12, 30, 6, 30];
 
