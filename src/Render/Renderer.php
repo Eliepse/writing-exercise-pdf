@@ -113,13 +113,13 @@ final class Renderer
 
 		$this->rendered = true;
 
-		$pages = $this->list->getPages();
+		$pages = $this->list->getPages($this->layout->wordsPerPage);
 
-		for ($pageIndex = 0; $pageIndex < count($pages); $pageIndex++) {
-			if ($pageIndex !== 0) {
+		for ($index = 0; $index < count($pages); $index++) {
+			if ($index !== 0) {
 				$this->mpdf->AddPage();
 			}
-			(new PageRender($this->mpdf, $this->layout))($pages[ $pageIndex ]);
+			(new PageRender($this->mpdf, $this->layout))($pages[ $index ]);
 		}
 	}
 

@@ -31,25 +31,11 @@ final class WordList
 	 */
 	public function getPages(int $chunkSize = 12): array
 	{
-		$chunks = array_chunk($this->words, $chunkSize);
-
 		return array_map(
-			function (int $index, array $words) {
-				return new Page($index, $words);
+			function (array $words) {
+				return new Page($words);
 			},
-			array_keys($chunks),
-			$chunks
+			array_chunk($this->words, $chunkSize)
 		);
-	}
-
-
-	/**
-	 * @param int $chunkSize
-	 *
-	 * @return int
-	 */
-	public function getPageCount(int $chunkSize = 12): int
-	{
-		return ceil(count($this->words) / $chunkSize);
 	}
 }
