@@ -9,7 +9,9 @@
 		<tr>
 			<td></td>
 			<td style="text-align: center; vertical-align: middle; height: <?= $layout->headerHeight ?>px;">
-				<div style="font-size: 16pt;
+				<div style="
+						font-family: caveat, sans-serif;
+						font-size: 18pt;
 						font-weight: bold;
 						color: <?= $layout->colorTitle ?>;">
 					<?= $layout->title ?>

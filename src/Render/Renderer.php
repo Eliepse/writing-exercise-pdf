@@ -87,6 +87,10 @@ final class Renderer
 					'B' => 'Caveat-Bold.ttf',
 					'useOTL' => 0x03,
 				],
+				'ecolier' => [
+					'R' => 'Ecolier-Regular.ttf',
+					'useOTL' => 0x00,
+				],
 			]
 		);
 	}
@@ -96,7 +100,7 @@ final class Renderer
 	{
 		$this->mpdf->autoPageBreak = false;
 		$this->mpdf->AddFontDirectory(Path::resources('fonts/'));
-		$this->mpdf->SetDefaultFont('caveat');
+		$this->mpdf->SetDefaultFont('ecolier');
 		$this->mpdf->margin_header = Math::pxtomm($this->layout->getMargin('top'));
 		$this->mpdf->margin_footer = Math::pxtomm($this->layout->getMargin('bottom'));
 	}
@@ -117,11 +121,8 @@ final class Renderer
 		if ($this->rendered) {
 			return;
 		}
-
 		$this->rendered = true;
-
 		$pageRenderer = new PageRender($this->mpdf, $this->layout);
-
 		foreach ($this->list->getPages($this->layout->wordsPerPage) as $index => $page) {
 			if ($index !== 0) {
 				$this->mpdf->AddPage();

@@ -24,7 +24,7 @@ abstract class BaseLayout
 	/**
 	 * @var int
 	 */
-	public $wordsPerPage = 13;
+	public $wordsPerPage = 18;
 
 	/**
 	 * @var string
