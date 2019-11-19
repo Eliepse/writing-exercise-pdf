@@ -4,7 +4,9 @@
 namespace Eliepse\WritingGrid\Layout;
 
 
+use Eliepse\WritingGrid\Point;
 use Eliepse\WritingGrid\Render\Renderer;
+use Eliepse\WritingGrid\Utils\Math;
 use Eliepse\WritingGrid\WordList;
 
 abstract class BaseLayout
@@ -57,6 +59,28 @@ abstract class BaseLayout
 		}
 
 		return 0;
+	}
+
+
+	public function getBodyOrigin(): Point
+	{
+		return new Point(
+			Math::pxtomm($this->getMargin('left')),
+			Math::pxtomm($this->headerHeight + $this->getMargin('top'))
+		);
+	}
+
+
+	public function getBodySizes(): Point
+	{
+		return new Point(
+			210 - Math::pxtomm($this->getMargin('left') + $this->getMargin('right')),
+			297 - Math::pxtomm(
+				$this->getMargin('top')
+				+ $this->getMargin('bottom')
+				+ $this->headerHeight
+				+ $this->footerHeight)
+		);
 	}
 
 
