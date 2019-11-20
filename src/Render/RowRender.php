@@ -5,10 +5,9 @@ namespace Eliepse\WritingGrid\Render;
 
 
 use Eliepse\WritingGrid\Content\Word;
-use Eliepse\WritingGrid\Layout\BaseLayout;
 use Eliepse\WritingGrid\Utils\Html;
 use Eliepse\WritingGrid\Utils\Math;
-use Mpdf\Mpdf;
+use ErrorException;
 
 final class RowRender extends RenderElement
 {
@@ -27,17 +26,11 @@ final class RowRender extends RenderElement
 	private $gutter = 10;
 
 
-	public function __construct(Mpdf $mpdf, BaseLayout $layout)
-	{
-		parent::__construct($mpdf, $layout);
-	}
-
-
 	/**
 	 * @param int $index The position of the row
 	 * @param Word $word The word to print
 	 *
-	 * @throws \ErrorException
+	 * @throws ErrorException
 	 */
 	public function __invoke(int $index, Word $word)
 	{
