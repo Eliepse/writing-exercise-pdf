@@ -3,4 +3,4 @@ Tool to generate exercise with words to write, as a PDF file
 
 ## Credits
 
-- Typeface: [Écolier](https://www.dafont.com/fr/ecolier.font) by Jean-Marie Douteau
+- Typeface: [Caveat](https://github.com/googlefonts/caveat) - Designed by Impallari Type, Cyreal
