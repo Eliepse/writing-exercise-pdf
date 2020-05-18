@@ -12,6 +12,7 @@ final class Html
 	 *
 	 * @return string
 	 * @throws \ErrorException
+	 * @noinspection PhpIncludeInspection
 	 */
 	static public function render(string $name, array $data = []): string
 	{

@@ -5,6 +5,7 @@ namespace Eliepse\WritingGrid\Render;
 
 
 use Eliepse\WritingGrid\Content\Word;
+use Eliepse\WritingGrid\Layout\WithPinyinRules;
 use Eliepse\WritingGrid\Utils\Html;
 use Eliepse\WritingGrid\Utils\Math;
 use ErrorException;
@@ -38,10 +39,14 @@ final class RowRender extends RenderElement
 		$y = $this->layout->getBodyOrigin()->y + Math::pxtomm($index * ($this->height + $this->gutter));
 		$w = $this->layout->getBodySizes()->x;
 
+		// If pinyin rules apply, shift the word one line up
+		$shiftWordY = is_a($this->layout, WithPinyinRules::class) ? Math::pxtomm(-6) : 0;
+
 		$this->mpdf->WriteFixedPosHTML(
 			Html::render('grid', [
 				'layout' => $this->layout,
 				'height' => $this->height,
+				'isPinyin' => is_a($this->layout, WithPinyinRules::class),
 			]), // html
 			$x, // x
 			$y, // y
@@ -56,7 +61,7 @@ final class RowRender extends RenderElement
 				'word' => $word,
 			]), // html
 			$x, // x
-			$y, // y
+			$y + $shiftWordY, // y
 			$w, // width
 			$this->height, // height
 		);
