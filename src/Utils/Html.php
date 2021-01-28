@@ -8,7 +8,7 @@ final class Html
 {
 	/**
 	 * @param string $name
-	 * @param array $data
+	 * @param array<string|mixed> $data
 	 *
 	 * @return string
 	 * @throws \ErrorException
@@ -22,7 +22,7 @@ final class Html
 
 		$path = Path::resources('html/' . $name . '.php');
 
-		if (!file_exists($path)) {
+		if (! file_exists($path)) {
 			throw new \ErrorException("The html view '$name' does not exists.");
 		}
 
