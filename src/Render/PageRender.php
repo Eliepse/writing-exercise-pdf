@@ -5,7 +5,6 @@ namespace Eliepse\WritingGrid\Render;
 
 
 use Eliepse\WritingGrid\Content\Page;
-use Eliepse\WritingGrid\Content\Word;
 
 final class PageRender extends RenderElement
 {
@@ -14,14 +13,11 @@ final class PageRender extends RenderElement
 	 *
 	 * @throws \ErrorException
 	 */
-	public function __invoke(Page $page)
+	public function __invoke(Page $page): void
 	{
 		$renderer = new RowRender($this->mpdf, $this->layout);
-
-		/** @var Word $word */
 		foreach ($page->getWords() as $index => $word) {
 			$renderer($index, $word);
 		}
-
 	}
 }

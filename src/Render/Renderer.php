@@ -20,25 +20,8 @@ final class Renderer
 	public const OUTPUT_DOWNLOAD = 1;
 	public const OUTPUT_STRING = 2;
 
-	/**
-	 * @var Mpdf
-	 */
-	protected $mpdf;
-
-	/**
-	 * @var BaseLayout
-	 */
-	protected $layout;
-
-	/**
-	 * @var WordList
-	 */
-	private $list;
-
-	/**
-	 * @var bool
-	 */
-	private $rendered = false;
+	protected Mpdf $mpdf;
+	private bool $rendered = false;
 
 
 	/**
@@ -49,12 +32,9 @@ final class Renderer
 	 *
 	 * @throws MpdfException
 	 */
-	private function __construct(BaseLayout $layout, WordList $list)
+	private function __construct(protected BaseLayout $layout, private WordList $list)
 	{
-		$this->layout = $layout;
 		$this->mpdf = new Mpdf($this->getMPDFInitConfigs());
-		$this->list = $list;
-
 		$this->configure();
 		$this->metadata();
 		(new HeaderRender($this->mpdf, $this->layout))();
@@ -62,6 +42,9 @@ final class Renderer
 	}
 
 
+	/**
+	 * @return array<string,mixed>
+	 */
 	private function getMPDFInitConfigs(): array
 	{
 		return [
@@ -77,6 +60,9 @@ final class Renderer
 	}
 
 
+	/**
+	 * @return array<string,array>
+	 */
 	private function getFontDataConfig(): array
 	{
 		return array_merge(
@@ -159,13 +145,13 @@ final class Renderer
 		$renderer = new self($layout, $list);
 		$renderer->render();
 
-		switch ($type) {
-			case self::OUTPUT_STRING:
-				return $renderer->outputString();
-				break;
-			case self::OUTPUT_DOWNLOAD:
-				$renderer->outputDownload();
-				break;
+		if (self::OUTPUT_STRING === $type) {
+			return $renderer->outputString();
+		}
+
+		if (self::OUTPUT_DOWNLOAD === $type) {
+			$renderer->outputDownload();
+			return;
 		}
 
 		$renderer->outputInline();

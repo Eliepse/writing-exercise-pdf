@@ -7,17 +7,16 @@ namespace Eliepse\WritingGrid\Content;
 final class Page
 {
 	/**
-	 * @var array
+	 * Page constructor.
+	 *
+	 * @param Word[] $words
 	 */
-	private $words = [];
+	public function __construct(private array $words = []) { }
 
 
-	public function __construct(array $words = [])
-	{
-		$this->words = $words;
-	}
-
-
+	/**
+	 * @return Word[]
+	 */
 	public function getWords(): array
 	{
 		return $this->words;

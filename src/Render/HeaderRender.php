@@ -8,7 +8,7 @@ use Eliepse\WritingGrid\Utils\Html;
 
 final class HeaderRender extends RenderElement
 {
-	public function __invoke()
+	public function __invoke(): void
 	{
 		$this->mpdf->SetHTMLHeader(
 			Html::render(

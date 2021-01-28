@@ -14,17 +14,13 @@ final class RowRender extends RenderElement
 {
 	/**
 	 * The height of a signe row
-	 *
-	 * @var int
 	 */
-	private $height = 30;
+	private int $height = 30;
 
 	/**
 	 * The space between rows
-	 *
-	 * @var int
 	 */
-	private $gutter = 10;
+	private int $gutter = 10;
 
 
 	/**
@@ -33,7 +29,7 @@ final class RowRender extends RenderElement
 	 *
 	 * @throws ErrorException
 	 */
-	public function __invoke(int $index, Word $word)
+	public function __invoke(int $index, Word $word): void
 	{
 		$x = $this->layout->getBodyOrigin()->x;
 		$y = $this->layout->getBodyOrigin()->y + Math::pxtomm($index * ($this->height + $this->gutter));
@@ -51,7 +47,7 @@ final class RowRender extends RenderElement
 			$x, // x
 			$y, // y
 			$w, // width
-			$this->height, // height
+			$this->height,
 		);
 
 		$this->mpdf->WriteFixedPosHTML(
@@ -63,7 +59,7 @@ final class RowRender extends RenderElement
 			$x, // x
 			$y + $shiftWordY, // y
 			$w, // width
-			$this->height, // height
+			$this->height,
 		);
 
 	}
