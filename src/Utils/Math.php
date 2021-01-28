@@ -6,7 +6,7 @@ namespace Eliepse\WritingGrid\Utils;
 
 final class Math
 {
-	static public function pxtomm(int $px, $dpi = 72): float
+	static public function pxtomm(int $px, int $dpi = 72): float
 	{
 		return self::inchtomm($px / $dpi);
 	}

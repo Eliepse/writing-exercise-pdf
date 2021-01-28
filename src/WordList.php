@@ -10,15 +10,15 @@ use Eliepse\WritingGrid\Content\Word;
 final class WordList
 {
 	/**
-	 * @var array
+	 * @var Word[]
 	 */
-	private $words = [];
+	private array $words = [];
 
 
 	/**
 	 * @param string $word
 	 */
-	public function addWord(string $word)
+	public function addWord(string $word): void
 	{
 		array_push($this->words, new Word($word));
 	}

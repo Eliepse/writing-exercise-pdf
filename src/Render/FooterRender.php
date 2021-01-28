@@ -8,7 +8,7 @@ use Eliepse\WritingGrid\Utils\Html;
 
 final class FooterRender extends RenderElement
 {
-	public function __invoke()
+	public function __invoke(): void
 	{
 		$this->mpdf->SetHTMLFooter(
 			Html::render(
